@@ -9,7 +9,7 @@ interface AssetCardProps {
 export default function AssetCard({ asset }: AssetCardProps) {
   // Check token type based on denom prefix and traces
   const hasTraces = asset.traces && asset.traces.length > 0;
-  const sourceFromTraces = hasTraces ? asset.traces[0].counterparty?.chain_name : '';
+  const sourceFromTraces = (hasTraces && asset.traces?.[0]?.counterparty?.chain_name) || '';
   const isIBCFromDenom = asset.base?.startsWith('ibc/');
   const isL2Bridge = asset.base?.startsWith('l2/');
   const isIBC = (hasTraces || isIBCFromDenom) && !isL2Bridge;
