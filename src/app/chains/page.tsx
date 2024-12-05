@@ -30,9 +30,9 @@ export default function ChainsPage() {
   const [expandedSections, setExpandedSections] = useState({
     details: true,
     description: true,
-    assets: false,
     endpoints: true,
-    ibc: false,
+    assets: true,
+    ibc: true,
   });
 
   const toggleSection = (section: keyof typeof expandedSections) => {
@@ -47,9 +47,9 @@ export default function ChainsPage() {
     setExpandedSections({
       details: true,
       description: true,
-      assets: false,
       endpoints: true,
-      ibc: false,
+      assets: true,
+      ibc: true,
     });
   }, [selectedChain]);
 
@@ -159,14 +159,14 @@ export default function ChainsPage() {
       {/* Left sidebar */}
       <div className="w-1/3 bg-dark-900/50 backdrop-blur-xl border-r border-dark-800/50 overflow-y-auto">
         <div className="p-4 sticky top-0 bg-dark-900/50 backdrop-blur-xl border-b border-dark-800/50 z-10">
-          <h2 className="text-xl font-semibold mb-3 text-gray-100">Chains</h2>
+          <h2 className="text-xl font-semibold mb-3 text-gray-100">Initia Chain Registry</h2>
 
           {/* Search and Filter */}
           <div className="space-y-2">
             <div className="relative">
               <input
                 type="text"
-                placeholder="Search chains..."
+                placeholder="Search by Name or Chain ID..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-3 pr-9 py-2 bg-dark-800/50 border border-dark-700/50 rounded-lg text-gray-300 
@@ -188,7 +188,7 @@ export default function ChainsPage() {
               </svg>
             </div>
 
-            <select
+            {/* <select
               value={selectedNetworkType}
               onChange={(e) => setSelectedNetworkType(e.target.value)}
               className="w-full px-3 py-2 bg-dark-800/50 border border-dark-700/50 rounded-lg text-gray-300 
@@ -207,7 +207,7 @@ export default function ChainsPage() {
                   {capitalizeFirstLetter(type)}
                 </option>
               ))}
-            </select>
+            </select> */}
           </div>
         </div>
 
@@ -291,7 +291,7 @@ export default function ChainsPage() {
                           href={selectedChain.website}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-blue-400 hover:text-blue-300 transition-colors text-sm"
+                          className="text-white hover:text-white/80 transition-colors text-sm"
                         >
                           {selectedChain.website}
                         </a>
@@ -335,42 +335,6 @@ export default function ChainsPage() {
                     <div className="bg-dark-800/30 rounded-lg p-3">
                       <p className="text-gray-300 text-sm">{selectedChain.description}</p>
                     </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Assets Section */}
-              {assetList.length > 0 && (
-                <div>
-                  <button
-                    onClick={() => toggleSection('assets')}
-                    className="w-full flex items-center justify-between text-left mb-2"
-                  >
-                    <h2 className="text-lg font-semibold text-gray-100">Assets</h2>
-                    <svg
-                      className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${
-                        expandedSections.assets ? 'transform rotate-180' : ''
-                      }`}
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </button>
-                  <div
-                    className={`space-y-2 overflow-hidden transition-all duration-200 ${
-                      expandedSections.assets ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
-                    }`}
-                  >
-                    {assetList.map((asset, index) => (
-                      <AssetCard key={index} asset={asset} />
-                    ))}
                   </div>
                 </div>
               )}
@@ -426,6 +390,42 @@ export default function ChainsPage() {
                 </div>
               </div>
 
+              {/* Assets Section */}
+              {assetList.length > 0 && (
+                <div>
+                  <button
+                    onClick={() => toggleSection('assets')}
+                    className="w-full flex items-center justify-between text-left mb-2"
+                  >
+                    <h2 className="text-lg font-semibold text-gray-100">Assets</h2>
+                    <svg
+                      className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${
+                        expandedSections.assets ? 'transform rotate-180' : ''
+                      }`}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </button>
+                  <div
+                    className={`space-y-2 overflow-hidden transition-all duration-200 ${
+                      expandedSections.assets ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
+                    }`}
+                  >
+                    {assetList.map((asset, index) => (
+                      <AssetCard key={index} asset={asset} />
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* IBC Connections Section */}
               {selectedChain.metadata?.ibc_channels &&
                 selectedChain.metadata.ibc_channels.length > 0 && (
@@ -452,8 +452,8 @@ export default function ChainsPage() {
                       </svg>
                     </button>
                     <div
-                      className={`space-y-3 overflow-hidden transition-all duration-200 ${
-                        expandedSections.ibc ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
+                      className={`space-y-3 overflow-y-auto transition-all duration-200 ${
+                        expandedSections.ibc ? 'max-h-[60vh] opacity-100' : 'max-h-0 opacity-0'
                       }`}
                     >
                       {/* Group and sort channels by chain_id */}

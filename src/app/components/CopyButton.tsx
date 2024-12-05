@@ -21,7 +21,7 @@ export default function CopyButton({ text }: CopyButtonProps) {
     <button
       onClick={handleCopy}
       className={`ml-2 p-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity ${
-        copied ? 'text-green-400' : 'text-gray-400 hover:text-gray-300'
+        copied ? 'text-white' : 'text-white/60 hover:text-white/80'
       }`}
       title="Copy to clipboard"
     >

@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   darkMode: 'class',
@@ -10,25 +10,25 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
         dark: {
-          50: '#f6f6f7',
-          100: '#e1e3e6',
-          200: '#c2c5cb',
-          300: '#9ca1ab',
-          400: '#767d8a',
-          500: '#5c6270',
-          600: '#434959',
-          700: '#363c4a',
-          800: '#24282f',
-          900: '#1a1d23',
-          950: '#0f1115',
+          50: '#ffffff',
+          100: '#f5f5f5',
+          200: '#e5e5e5',
+          300: '#d4d4d4',
+          400: '#a3a3a3',
+          500: '#737373',
+          600: '#525252',
+          700: '#404040',
+          800: '#262626',
+          900: '#171717',
+          950: '#000000',
         },
       },
     },
   },
   plugins: [],
-}
+};
 
-export default config
+export default config;

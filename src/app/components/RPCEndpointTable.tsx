@@ -98,7 +98,7 @@ export default function RPCEndpointTable({ endpoints }: RPCEndpointTableProps) {
                     href={status.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-400 hover:text-blue-300"
+                    className="text-white hover:text-white/80"
                   >
                     <TruncatedURL url={status.url} />
                   </a>

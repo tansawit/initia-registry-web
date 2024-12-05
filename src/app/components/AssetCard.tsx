@@ -71,7 +71,7 @@ export default function AssetCard({ asset }: AssetCardProps) {
   }
 
   return (
-    <div className="bg-dark-800/30 rounded-lg p-3">
+    <div className="bg-white/5 rounded-lg p-3">
       <div className="flex items-center gap-3">
         {asset.logo_URIs?.png && (
           <Image
@@ -84,10 +84,10 @@ export default function AssetCard({ asset }: AssetCardProps) {
         )}
         <div className="flex-1">
           <div className="flex items-center gap-2">
-            <h3 className="font-medium text-gray-200 text-sm">{asset.symbol}</h3>
-            <span className="text-xs text-gray-400">({asset.name})</span>
+            <h3 className="font-medium text-white text-sm">{asset.symbol}</h3>
+            <span className="text-xs text-white/60">({asset.name})</span>
           </div>
-          <div className="flex items-center gap-2 text-xs text-gray-400">
+          <div className="flex items-center gap-2 text-xs text-white/60">
             {asset.base && (
               <div className="flex items-center group">
                 <span>Denom: </span>
